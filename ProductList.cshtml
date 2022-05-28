@@ -1,0 +1,59 @@
+﻿@model IEnumerable<InventryManagementSystem.Models.Prod>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Product</h1>
+
+@using (Html.BeginForm("Delete","Product",FormMethod.Post))
+{
+<p class = "btn btn-success">
+    @Html.ActionLink("Create New", "Create", new {})    
+</p>
+<table class="table-bordered table-hover" id="MyTable" class="display">
+    <thead>
+        
+        <tr class="bg-warning">
+            <th>
+                @Html.DisplayName("Product Id")
+            </th>
+            <th>
+                @Html.DisplayName("Product Name")
+            </th>
+            <th>
+                @Html.DisplayName("Product Quentity")
+            </th>            
+        </tr>
+        
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("Delete", "Product", new { id = item.id }))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_qnty)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-success" }) |
+                        <input type="submit" value="Delete" onclick="return confirm('Are you Sure to Delete @item.product_name Record?')" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
+
+}
+

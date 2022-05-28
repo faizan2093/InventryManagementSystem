@@ -1,0 +1,63 @@
+﻿@model IEnumerable<InventryManagementSystem.Models.Purc>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Purchase</h1>
+
+@using (Html.BeginForm("Delete", "Purchase", FormMethod.Post))
+{
+    <p class="btn btn-success">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-bordered table-hover" id="MyTable">
+        <thead>
+            <tr>
+            <tr class="bg-warning">
+                <th>
+                    @Html.DisplayName("Purchase Id")
+                </th>
+                <th>
+                    @Html.DisplayName("Purchase Product")
+                </th>
+                <th>
+                    @Html.DisplayName("Purchase Quentity")
+                </th>
+                <th>
+                    @Html.DisplayName("Date Of Purchase")
+                </th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                using (Html.BeginForm("Delete", "Purchase", new { id = item.id }))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Purchase_Product)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Purchase_Qnty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date_Of_Purchase)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-success" }) |
+
+                            <input type="submit" value="Delete" onclick="return confirm('Are you Sure, you want to delete @item.Purchase_Product record?')" />
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+

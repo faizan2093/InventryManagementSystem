@@ -1,0 +1,42 @@
+﻿@model InventryManagementSystem.Models.Sale
+
+<div>
+    <h1>Details</h1>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Id")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.id)
+        </dd>
+        <dt>
+            @Html.DisplayName("Sale Product")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sale_Product)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sale Quentity")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sale_Qnty)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sale Date")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sale_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<InventryManagementSystem.Models.Sale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Sale</h1>
+<style>
+    body {
+        
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 80% 90%;
+    }
+</style>
+@using (Html.BeginForm("Delete", "Sale", FormMethod.Post))
+{
+    <p class = "btn btn-success">
+        @Html.ActionLink("Create New", "Create", new {})
+    </p>
+    <table class="table table-bordered table-hover" id="MyTable">
+        <thead>
+            <tr>
+            <tr class="bg-warning">
+                <th>
+                    @Html.DisplayName("Sale Id")
+                </th>
+                <th>
+                    @Html.DisplayName("Sale Product")
+                </th>
+                <th>
+                    @Html.DisplayName("Sale Quentity")
+                </th>
+                <th>
+                    @Html.DisplayName("Sale Date")
+                </th>
+
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                using (Html.BeginForm("Delete", "Sale", new { id = item.id }))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sale_Product)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sale_Qnty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sale_Date)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-success" }) |
+
+                            <input type="submit" value="Delete" onclick="return confirm('Are you Sure, you want to delete @item.Sale_Product record?')" />
+                        </td>
+
+                    </tr>
+                }
+
+            }
+        </tbody>
+</table>
+
+}
+
+
+
+
